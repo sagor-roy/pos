@@ -15,23 +15,18 @@
                     <i class="fas fa-user text-success"></i><span class="nav-text">Customer List</span>
                 </a>
             </li>
-            <li class="">
-                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                    <i class="fas fa-bars text-info"></i> <span class="nav-text">Categories</span>
+            <li>
+                <a class="" href="{{ route('admin.cate') }}" aria-expanded="false">
+                    <i class="fas fa-bars text-info"></i></i><span class="nav-text">Categories</span>
                 </a>
-                <ul aria-expanded="false" class="collapse" style="height: 0px;">
-                    <li><a href="{{ route('admin.cate') }}"> Categories</a></li>
-                    <li><a href="{{ route('admin.sub-cate') }}"> Sub Categories</a></li>
-                </ul>
             </li>
             <li class="mega-menu mega-menu-sm">
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     <i class="fas fa-database text-success"></i><span class="nav-text">Product</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="./layout-blank.html"> Add Product</a></li>
-                    <li><a href="./layout-compact-nav.html">All Products</a></li>
-                    <li><a href="./layout-compact-nav.html">Products Order</a></li>
+                    <li><a href="{{ route('admin.product') }}">All Products</a></li>
+                    <li><a href="{{ route('admin.product-order') }}">Products Order</a></li>
                 </ul>
             </li>
 
@@ -40,9 +35,9 @@
                     <i class="fas fa-shopping-cart text-warning"></i><span class="nav-text">Order</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="./layout-blank.html">All Orders</a></li>
-                    <li><a href="./layout-one-column.html"> Pending Order</a></li>
-                    <li><a href="./layout-blank.html">Complete Order</a></li>
+                    <li><a href="{{ route('admin.all-order') }}">All Orders</a></li>
+                    <li><a href="{{ route('admin.pending-order') }}"> Pending Order</a></li>
+                    <li><a href="{{ route('admin.success-order') }}">Complete Order</a></li>
                 </ul>
             </li>
         </ul>

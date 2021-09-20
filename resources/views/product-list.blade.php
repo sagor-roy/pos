@@ -6,9 +6,9 @@
         <section class="content-header">
             <div class="d-flex justify-content-between">
                 <h4>
-                    Customer List
+                    Product List
                 </h4>
-                <span><a href="javascript:;" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-sm btn-primary">Add Customer</a></span>
+                <span><a href="javascript:;" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-sm btn-primary">Add Product</a></span>
             </div>
         </section>
 
@@ -17,29 +17,34 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Add Customer</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Add Product</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
-                <form action="{{ route('admin.customer-store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.product-store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="name">Customre Name</label>
-                        <input type="text" class="form-control" name="name" placeholder="Enter your name" required>
+                        <label for="name">Product Name</label>
+                        <input type="text" class="form-control" name="name" placeholder="Enter your product name">
                     </div>
                     <div class="form-group">
-                        <label for="name">Phone</label>
-                        <input type="number" class="form-control" name="number" placeholder="Enter your number" required>
+                        <label for="name">Category</label>
+                        <select name="category" class="form-control">
+                            <option value="">Select your category</option>
+                            @foreach ($show as $row)
+                            <option value="{{ $row->id }}">{{ $row->cate }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="name">Address</label>
-                        <textarea name="address" rows="4" class="form-control" placeholder="Enter your address" required></textarea>
+                        <label for="name">Price</label>
+                        <input type="number" name="price" class="form-control" placeholder="Enter product price">
                     </div>
                     <div class="form-group">
-                        <label for="name">Customer Image</label>
-                        <input type="file" class="form-control-file" name="image" required>
+                        <label for="name">Product Image</label>
+                        <input type="file" class="form-control-file" name="image">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -71,51 +76,58 @@
                         <tr>
                             <th>Image</th>
                             <th>Name</th>
-                            <th>Phone</th>
-                            <th>Address</th>
+                            <th>Category</th>
+                            <th>Code</th>
+                            <th>Price</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($show as $row)
+                        @foreach($product as $row)
                         <tr>
-                            <td><img width="50" src="{{ asset('uploads/customer/'.$row->img) }}" alt="img"></td>
+                            <td><img width="70" src="{{ asset('uploads/product/'.$row->img) }}" alt="img"></td>
                             <td>{{ $row->name }}</td>
-                            <td>{{ $row->number }}</td>
-                            <td>{{ $row->address }}</td>
-                            <td><a href="javascript:void()" data-toggle="modal" data-target="#edit{{ $row->id }}" class="btn btn-sm btn-primary py-1 px-2"><i class="fas fa-edit"></i></a> <a href="{{ route('admin.customer-delete',$row->id) }}" onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a></td>
+                            <td>{{ $row->cate->cate }}</td>
+                            <td>{{ $row->code }}</td>
+                            <td>{{ number_format($row->price, 0); }}&#2547;</td>
+                            <td><a href="javascript:void()" data-toggle="modal" data-target="#edit{{ $row->id }}" class="btn btn-sm btn-primary py-1 px-2"><i class="fas fa-edit"></i></a> <a href="{{ route('admin.product-delete',$row->id) }}" onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a></td>
                         </tr>
-                        <!-- Modal -->
+                         <!-- Modal -->
                         <div class="modal fade" id="edit{{ $row->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Add Customer</h5>
+                                <h5 class="modal-title" id="exampleModalLongTitle">Add Product</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                                 </div>
-                                <form action="{{ route('admin.customer-edit',$row->id) }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('admin.product-edit',$row->id) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="name">Customre Name</label>
-                                        <input type="text" class="form-control" name="name" value="{{ $row->name }}" required>
+                                        <label for="name">Product Name</label>
+                                        <input type="text" class="form-control" name="name" value="{{ $row->name }}">
                                     </div>
                                     <div class="form-group">
-                                        <label for="name">Phone</label>
-                                        <input type="number" class="form-control" name="number" value="{{ $row->number }}" required>
+                                        <label for="name">Category</label>
+                                        <select name="category" class="form-control">
+                                            <option value="">Select your category</option>
+                                            @foreach ($show as $item)
+                                            <option value="{{ $item->id }}" {{ $item->id == $row->cate_id ? 'selected':'' }}>{{ $item->cate }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="name">Address</label>
-                                        <textarea name="address" rows="4" class="form-control" placeholder="Enter your address" required>{{ $row->address }}</textarea>
+                                        <label for="name">Price</label>
+                                        <input type="number" name="price" class="form-control" value="{{ $row->price }}">
                                     </div>
                                     <div class="form-group">
-                                        <label for="name">Customer Image</label>
+                                        <label for="name">Product Image</label>
                                         <input type="file" class="form-control-file" name="image">
                                     </div>
                                     <div class="form-group">
-                                        <img width="70" src="{{ asset('uploads/customer/'.$row->img) }}" alt="img">
+                                        <img width="70" src="{{ asset('uploads/product/'.$row->img) }}" alt="img">
                                     </div>
                                 </div>
                                 <div class="modal-footer">
