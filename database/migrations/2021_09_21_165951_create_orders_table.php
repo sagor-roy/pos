@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('customer_id');
             $table->string('payment_method');
+            $table->string('qty');
             $table->string('total');
             $table->string('pay');
             $table->string('due');

@@ -17,14 +17,36 @@
                 <!-- small box -->
                 <div class="small-box box4column">
                     <div class="inner" style="color: #231f54;border-color:#231f54">
-                        <h3>121</h3>
+                        <h3>{{ count($success) }}</h3>
 
-                        <p>Undelivered Orders</p>
+                        <p>Success Orders</p>
                     </div>
                     <div class="icon">
                         <i style="color:#231f54;border-color:#231f54" class="fa fa-shopping-cart"></i>
                     </div>
-                    <a href="https://saforamart.com/orderManagement/orders" class="small-box-footer">Manage <svg
+                    <a href="{{ route('admin.success-order') }}" class="small-box-footer">Manage <svg
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="feather feather-arrow-right-circle">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 16 16 12 12 8"></polyline>
+                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box box4column">
+                    <div class="inner" style="color: #231f54;border-color:#231f54">
+                        <h3>{{ count($pending) }}</h3>
+
+                        <p>Pending Orders</p>
+                    </div>
+                    <div class="icon">
+                        <i style="color:#231f54;border-color:#231f54" class="fa fa-shopping-cart"></i>
+                    </div>
+                    <a href="{{ route('admin.pending-order') }}" class="small-box-footer">Manage <svg
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" class="feather feather-arrow-right-circle">
@@ -40,14 +62,14 @@
                 <!-- small box -->
                 <div class="small-box box4column">
                     <div class="inner" style="color: #231f54;border-color:#231f54">
-                        <h3>121</h3>
+                        <h3>{{ count($order) }}</h3>
 
                         <p>Total Orders</p>
                     </div>
                     <div class="icon">
                         <i style="color:#231f54;border-color:#231f54" class="fa fa-shopping-cart"></i>
                     </div>
-                    <a href="https://saforamart.com/orderManagement/orders" class="small-box-footer">Manage <svg
+                    <a href="{{ route('admin.all-order') }}" class="small-box-footer">Manage <svg
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" class="feather feather-arrow-right-circle">
@@ -62,14 +84,14 @@
                 <!-- small box -->
                 <div class="small-box box4column">
                     <div class="inner" style="color: #231f54;border-color:#231f54">
-                        <h3>56</h3>
+                        <h3>{{ count($customer) }}</h3>
 
                         <p>Customers</p>
                     </div>
                     <div class="icon">
                         <i style="color:#231f54;border-color:#231f54" class="fa fa-users"></i>
                     </div>
-                    <a href="https://saforamart.com/Customer/customers" class="small-box-footer">Manage <svg
+                    <a href="{{ route('admin.customer') }}" class="small-box-footer">Manage <svg
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" class="feather feather-arrow-right-circle">
@@ -84,14 +106,14 @@
                 <!-- small box -->
                 <div class="small-box box4column">
                     <div class="inner" style="color: #231f54;border-color:#231f54">
-                        <h3>574</h3>
+                        <h3>{{ count($product) }}</h3>
 
                         <p>Products</p>
                     </div>
                     <div class="icon">
                         <i style="color:#231f54;border-color:#231f54" class="fa fa-list"></i>
                     </div>
-                    <a href="https://saforamart.com/Item/products" class="small-box-footer">Manage <svg
+                    <a href="{{ route('admin.product') }}" class="small-box-footer">Manage <svg
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" class="feather feather-arrow-right-circle">
@@ -153,11 +175,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
 
 </div>
 @endsection

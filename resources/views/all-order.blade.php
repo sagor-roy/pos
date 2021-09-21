@@ -26,15 +26,21 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($show as $row)
                         <tr>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>61</td>
-                            <td>61</td>
-                            <td>61</td>
-                            <td>61</td>
+                            <td>{{ $row->cus->name }}</td>
+                            <td>{{ $row->created_at->toDateString() }}</td>
+                            <td>{{ $row->qty }}</td>
+                            <td>{{ number_format($row->total, 0) }}</td>
+                            <td>{{ $row->payment_method }}</td>
+                            @if ($row->status == null)
+                            <td><span class="text-capitalize badge badge-danger">pending</span></td>
+                            @else
+                            <td><span class="text-capitalize badge badge-success">success</span></td>
+                            @endif
+                            <td><a href="{{ route('admin.view',$row->id) }}" class="btn bg-info"><i class="fas fa-eye"></i></a></td>
                         </tr>
+                        @endforeach
                 </table>
             </div>
         </div>

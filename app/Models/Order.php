@@ -12,9 +12,14 @@ class Order extends Model
     protected $fillable = [
         'customer_id',
         'payment_method',
+        'qty',
         'total',
         'pay',
         'due',
         'status',
     ];
+
+    public function cus() {
+        return $this->belongsTo(Customer::class,'customer_id');
+    }
 }

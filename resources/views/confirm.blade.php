@@ -50,13 +50,13 @@
                           @endforeach
                         </tbody>
                     </table>
-                    <div class="float-right">
+                    {{-- <div class="float-right">
                         <h5>VAT : 2%</h5>
                         <h5>Total : {{ number_format($order->total, 0); }}&#2547;</h5>
                         <h5>Pay : {{ number_format($order->pay, 0); }}&#2547;</h5>
                         <h5>Due : {{ number_format($order->due, 0); }}&#2547;</h5>
                         <a href="{{ route('admin.all-order') }}" class="btn btn-primary rounded-0">ORDER</a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

@@ -79,6 +79,7 @@
                             <div class="form-group">
                                 <input type="number" class="form-control" name="amount" placeholder="Enter your amount" required>
                                 <input type="hidden" name="total" value="{{ $total }}">
+                                <input type="hidden" name="qty" value="{{ $qty }}">
                             </div>
                             <button class="btn btn-sm btn-primary mt-3" type="submit">Create Invoice</button>
                         </div>

@@ -45,6 +45,10 @@ Route::prefix('admin/')->name('admin.')->middleware('admin')->group(function(){
     Route::get('cart-delete/{id}',[CartController::class,'destroy'])->name('cart-delete');
     Route::post('qty-update/{id}',[CartController::class,'edit'])->name('qty-update');
     Route::post('order',[OrderController::class,'store'])->name('order');
+    Route::get('order', function () {
+        return redirect()->back();
+    });
+    Route::get('view/{id}',[OrderController::class,'show'])->name('view');
     // pending order
     Route::get('pending-order',[BackendController::class,'pendingOrder'])->name('pending-order');
     // success order

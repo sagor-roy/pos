@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Customer;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,12 @@ class BackendController extends Controller
 
     // dashboard
     public function dash() {
-        return view('dashboard');
+        $customer = Customer::get();
+        $order = Order::get();
+        $pending = Order::where('status',null)->get();
+        $success = Order::where('status','!=',null)->get();
+        $product = Product::get();
+        return view('dashboard',compact('customer','order','product','pending','success'));
     }
 
     // customer
@@ -58,16 +64,19 @@ class BackendController extends Controller
 
     // all order
     public function allOrder() {
-        return view('all-order');
+        $show = Order::latest()->with('cus')->get();
+        return view('all-order',compact('show'));
     }
 
     // pending order
     public function pendingOrder() {
-        return view('pending-order');
+        $show = Order::where('status',null)->latest()->with('cus')->get();
+        return view('pending-order',compact('show'));
     }
 
     // success order
     public function successOrder() {
-        return view('success-order');
+        $show = Order::where('status','!=',null)->latest()->with('cus')->get();
+        return view('success-order',compact('show'));
     }
 }
