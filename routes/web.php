@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\backend\BackendController;
+use App\Http\Controllers\backend\cart\CartController;
 use App\Http\Controllers\backend\category\CategoryController;
 use App\Http\Controllers\backend\customer\CustomerController;
 use App\Http\Controllers\backend\LoginController;
+use App\Http\Controllers\backend\order\OrderController;
 use App\Http\Controllers\backend\product\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +41,10 @@ Route::prefix('admin/')->name('admin.')->middleware('admin')->group(function(){
     Route::get('product-order',[BackendController::class,'proOrder'])->name('product-order');
     // all order
     Route::get('all-order',[BackendController::class,'allOrder'])->name('all-order');
+    Route::get('add-to-cart/{id}',[CartController::class,'store'])->name('cart-store');
+    Route::get('cart-delete/{id}',[CartController::class,'destroy'])->name('cart-delete');
+    Route::post('qty-update/{id}',[CartController::class,'edit'])->name('qty-update');
+    Route::post('order',[OrderController::class,'store'])->name('order');
     // pending order
     Route::get('pending-order',[BackendController::class,'pendingOrder'])->name('pending-order');
     // success order

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Customer;
 use App\Models\Product;
@@ -41,7 +42,18 @@ class BackendController extends Controller
 
     // product order
     public function proOrder() {
-        return view('product-order');
+        $show = Product::latest()->with('cate')->get();
+        $customer = Customer::latest()->get();
+        $cart = Cart::latest()->with('product')->get();
+        $qty = Cart::all()->sum(function ($t){
+            return $t->qty;
+        });
+        $sub = Cart::all()->sum(function ($t){
+            return $t->price * $t->qty;
+        });
+        $vat = $sub * 2 / 100;
+        $total = $sub + $vat;
+        return view('product-order',compact('show','customer','cart','qty','sub','vat','total'));
     }
 
     // all order
